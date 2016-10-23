@@ -1,0 +1,24 @@
+<md-content layout-padding>
+
+	<div layout="row" layout-align="center center">
+		<div>
+			<md-button ng-show="globvars.isAdmin" class="md-raised md-primary" ng-click="go('/addHow')">Add How</md-button>
+		</div>
+	</div>
+
+	<md-grid-list
+		md-cols-xs="2" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="6"
+		md-row-height-gt-md="1:1" md-row-height="2:2"
+		md-gutter="12px" md-gutter-gt-sm="8px" >
+
+		<md-grid-tile ng-repeat="how in hows" ng-click="showHow(how)">
+			<div flex layout-wrap>
+				<img  style="width: 100%" ng-src="http://{{apiaddress}}:{{apiport}}/static/{{how.image_icon}}" class="md-card-image" alt="{{how.image_icon}}">
+			</div>
+			<md-grid-tile-footer>
+				<h3>{{how.title}}</h3>
+			</md-grid-tile-footer>
+		</md-grid-tile>
+
+	</md-grid-list>
+</md-content>

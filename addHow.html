@@ -1,0 +1,131 @@
+<md-toolbar md-scroll-shrink>
+    <div flex layout="row">
+    	<div flex="25" hide-sm hide-xs></div>
+		<div flex="50" flex-sm="100" flex-xs="100" layout="row" layout-align="center center">
+			<div>Add HowTo</div>
+		</div>
+    	<div flex="25" hide-sm hide-xs></div>
+	</div>
+</md-toolbar>
+
+
+<div layout="column" layout-wrap>
+    <div flex layout="row">
+    	<div flex="25" hide-sm hide-xs></div>
+	    <div flex="50" flex-sm="100" flex-xs="100" layout-align="start center">
+
+			<form ng-submit="processAddHowForm()">
+				<div layout="row" layout-align="end center">
+					<md-button type="submit" class="md-raised md-primary">Submit</md-button>
+				</div>
+
+				<md-card>
+					<md-card-content layout-padding>
+						<div layout="column">
+							<md-input-container>
+								<input type="text" name="how.title" ng-model="addHowTitle" placeholder="New How Title"></input>
+							</md-input-container>
+
+							<md-input-container>
+          						<label>HowTo Image</label>
+					          <md-select ng-model="addHowTitleImage">
+					            <md-option><em>None</em></md-option>
+					            <md-option ng-repeat="fname in imageFilenames" ng-value="fname">
+					              {{fname}}
+					            </md-option>
+					          </md-select>
+					        </md-input-container>
+
+							<img ng-src="http://{{apiaddress}}:{{apiport}}/static/{{addHowTitleImage}}" class="md-card-image" alt="{{addHowTitleImage}}">
+						</div>
+					</md-card-content>
+				</md-card>
+
+				<md-card ng-repeat="step in addHowSteps">
+					<md-card-title>
+						<strong>Step {{$index +1}}</strong>
+					</md-card-title>
+
+					<md-card-content layout-padding>
+						<div layout="column">
+							<md-input-container>
+								<input ng-model="step.title"  placeholder="Step Title">
+							</md-input-container>
+
+							<md-input-container>
+          						<label>Image</label>
+					          <md-select ng-model="step.image">
+					            <md-option><em>None</em></md-option>
+					            <md-option ng-repeat="fname in imageFilenames" ng-value="fname">
+					              {{fname}}
+					            </md-option>
+					          </md-select>
+					        </md-input-container>
+
+							<img ng-src="http://{{apiaddress}}:{{apiport}}/static/{{step.image}}" class="md-card-image" alt="{{step.image}}">
+
+							<md-input-container>
+								<textarea name="Description" ng-model="step.description" placeholder="Description"></textarea>
+							</md-input-container>
+						</div>
+					</md-card-content>
+				</md-card>
+
+				<div layout="row" layout-align="end center">
+					<md-button class="md-raised md-primary" ng-click="addHowAddStep()">Add a Step</md-button>
+				</div>
+
+			</form>
+
+
+			<md-card>
+				<md-card-title>
+					<strong>Upload image</strong>
+				</md-card-title>
+
+				<md-card-content layout-padding>
+					<div layout="column">
+						
+						<md-input-container>
+
+							<table>
+								<th>Uploaded images.</th>
+								<tr ng-repeat="fname in imageFilenames">
+									<td>{{fname}}</td>
+								</tr>
+							</table>
+
+							<br/>
+							<br/>
+
+							<form name="upload_form">
+								<input
+									type="file"
+									ngf-select
+									ng-model="upfile"
+									name="upfile"
+									ngf-pattern="'image/*'"
+									accept="image/*"
+									ngf-max-size="20MB"
+									/>
+									<br/>
+
+								<img style="width:100px;" ngf-thumbnail="upfile || '/thumb.jpg'"/>
+								
+								<i ng-show="upload_form.upfile.$error.required">*required</i><br>
+								<i ng-show="upload_form.upfile.$error.maxSize">File too large {{upfile.size / 1000000|number:1}}MB: max 20M</i>
+
+								<button ng-click="upsubmit()">submit</button>
+								<p>{{upprogress}}</p>
+							</form>
+
+						</md-input-container>
+					</div>
+				</md-card-content>
+			</md-card>
+
+
+		</div>
+    	<div flex="25" hide-sm hide-xs></div>
+	</div>
+</div>

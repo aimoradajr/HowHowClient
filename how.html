@@ -1,0 +1,56 @@
+<md-toolbar md-scroll-shrink>
+    <div flex layout="row">
+    	<div flex="25" hide-sm hide-xs></div>
+		<div flex="50" flex-sm="100" flex-xs="100" layout="row" layout-align="center center">
+			<div>{{globvars.currentHow.title}}</div>
+		</div>
+    	<div flex="25" hide-sm hide-xs></div>
+	</div>
+</md-toolbar>
+
+
+<div layout="column" layout-wrap>
+    <div flex layout="row">
+    	<div flex="25" hide-sm hide-xs></div>
+	    <div flex="50" flex-sm="100" flex-xs="100" layout-align="start center">
+
+				<div layout="row" layout-align="end center">
+					<md-button ng-show="globvars.isAdmin" class="md-raised md-primary" ng-click="showEditHow(globvars.currentHow)">Edit</md-button>
+					<md-button ng-show="globvars.isAdmin" class="md-raised md-primary" ng-click="removeHow(globvars.currentHow)">Delete</md-button>
+				</div>
+
+				<md-card>
+					<md-card-content>
+						<md-button class="md-raised" ng-show="enableUpvote" ng-click="upvoteHow()">Like</md-button>
+						{{globvars.currentHow.upvotes}} likes.
+					</md-card-content>
+				</md-card>
+
+				<md-card ng-repeat="step in globvars.currentHow.steps">
+					<md-card-header>
+						<md-card-avatar>
+							<strong>{{$index + 1}}</strong>
+						</md-card-avatar>
+						<md-card-header-text>
+
+							<span class="md-title">
+								<strong>
+								{{step.title}}
+								</strong>
+							</span>
+
+						</md-card-header-text>
+					</md-card-header>
+
+					<img ng-src="http://{{apiaddress}}:{{apiport}}/static/{{step.image}}" class="md-card-image" alt="{{step.image}}">
+
+					<md-card-content>
+						<p>
+							{{step.description}}
+						</p>
+					</md-card-content>
+				</md-card>
+		</div>
+    	<div flex="25" hide-sm hide-xs></div>
+	</div>
+</div>

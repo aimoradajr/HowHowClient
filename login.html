@@ -1,0 +1,46 @@
+<div layout="column" layout-wrap>
+	<div flex layout="row">
+		<div flex="25" hide-sm hide-xs></div>
+		<div flex="50" flex-sm="100" flex-xs="100" layout-align="start center">
+			<md-content>
+				<div layout="row" layout-align="end center">
+					<md-input-container>
+						<md-button class="md-raised md-primary" ng-click="goLoginGuest()">Guest Login</md-button>
+					</md-input-container>
+				</div>
+
+				<div layout="row">
+					<md-card layout-align="start center">
+						<md-card-contentv layout="row">
+							<div flex="30" layout="row" layout-wrap layout-align="center center">
+								<div>
+									<img style="width:100%" src="img/howhow2.png"/>
+								</div>
+							</div>
+							<div flex="70" layout-padding>
+								<br/>
+								<br/>
+								<md-input-container class="md-block">
+									<!-- Use floating label instead of placeholder -->
+									<label>Name</label>
+									<input ng-model="globvars.username" type="text">
+								</md-input-container>
+
+								<md-input-container class="md-block">
+									<!-- Use floating label instead of placeholder -->
+									<label>Password</label>
+									<input ng-model="globvars.userpassword" type="password">
+								</md-input-container>
+
+								<md-input-container class="md-block">
+									<md-button class="md-raised md-primary" ng-click="goLogin()">Login</md-button>
+								</md-input-container>
+							</div>
+						</md-card-content>
+				    </md-card>
+			    </div>
+
+			</md-content>
+		</div>
+	</div>
+</div>
